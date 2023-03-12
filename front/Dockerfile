@@ -1,22 +1,20 @@
-FROM node:15.12.0-alpine
+FROM node:16-alpine
 
+# docker-compose.ymlからWORKDIRの値を受け取る
 ARG WORKDIR
-ARG CONTAINER_PORT
-ARG API_URL
-ARG API_URL_BROWSER
 
-ENV HOME=/${WORKDIR} \
-    LANG=C.UTF-8 \
-    TZ=Asia/Tokyo \
-    HOST=0.0.0.0 \
-    API_URL=${API_URL} \
-    API_URL_BROWSER=${API_URL_BROWSER}
+# コンテナのホームディレクトリを設定する
+ENV HOME=/${WORKDIR}
 
+# コマンド実行する作業ディレクトリの設定する
 WORKDIR ${HOME}
 
-# COPY package*.json ./
-# RUN yarn install
-# COPY . ./
-# RUN yarn run build
+# Alpineのリポジトリから最新インデックスを取得し、npm自体も最新版に更新する
+RUN apk update && npm install -g npm
 
-EXPOSE ${CONTAINER_PORT}
+#COPY package*.json ./
+#RUN yarn install
+#COPY . ./
+#RUN yarn run build
+
+EXPOSE 8000
