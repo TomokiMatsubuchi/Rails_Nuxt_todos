@@ -12,9 +12,9 @@ WORKDIR ${HOME}
 # Alpineのリポジトリから最新インデックスを取得し、npm自体も最新版に更新する
 RUN apk update && npm install -g npm
 
-#COPY package*.json ./
-#RUN yarn install
-#COPY . ./
-#RUN yarn run build
+COPY package*.json ./
+RUN yarn install
+COPY . ./
+RUN yarn run build
 
-EXPOSE 8000
+EXPOSE 8080
