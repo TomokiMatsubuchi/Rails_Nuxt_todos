@@ -3,13 +3,13 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setUser(state, payload) {
-    state.currentUser = payload;
+  setUser(state, user) {
+    state.currentUser = user;
   },
 };
 
 export const actions = {
-  setUser(context, data) {
-    context.commit("setUser", data);
+  setUser(context, user_data) {
+    context.commit("setUser", user_data); //第一引数にmutationsの呼び出す関数の名前を入れ、第二引数に該当mutationsで使用する値を入れる。
   },
 };
